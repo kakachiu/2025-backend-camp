@@ -181,7 +181,7 @@
             </li>
             <li v-if="name">
               <button
-                @click="(closeMobileMenu(), logout())"
+                @click="closeMobileMenu(), logout()"
                 class="inline-block py-2 text-neutral-300 hover:text-primary-0 transition-all font-medium text-base leading-[150%] w-full text-left"
               >
                 登出
@@ -195,29 +195,29 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { storeToRefs } from "pinia";
-import { useRouter } from "vue-router";
-import { useUserStore } from "../stores/user.js";
-import { removeCookie } from "../utils/cookie.js";
+import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
+import { useUserStore } from '../stores/user.js'
+import { removeCookie } from '../utils/cookie.js'
 
-const router = useRouter();
-const { name, role } = storeToRefs(useUserStore());
-const { setCurrentUser } = useUserStore();
+const router = useRouter()
+const { name, role } = storeToRefs(useUserStore())
+const { setCurrentUser } = useUserStore()
 
-const isMobileMenuOpen = ref(false);
+const isMobileMenuOpen = ref(false)
 
 function logout() {
-  removeCookie("token");
-  setCurrentUser({ name: "", role: "" });
-  router.push("/");
+  removeCookie('token')
+  setCurrentUser({ name: '', role: '' })
+  router.push('/')
 }
 
 const toggleMobileMenu = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value;
-};
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
+}
 
 const closeMobileMenu = () => {
-  isMobileMenuOpen.value = false;
-};
+  isMobileMenuOpen.value = false
+}
 </script>
